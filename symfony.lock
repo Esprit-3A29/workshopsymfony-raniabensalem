@@ -89,7 +89,7 @@
         ]
     },
     "symfony/flex": {
-        "version": "1.19",
+        "version": "2.2",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
