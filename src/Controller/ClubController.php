@@ -37,6 +37,6 @@ class ClubController extends AbstractController
     #[Route('reservation', name: 'app_reservation')]
     public function reservation(): Response
     {
-        return new Response  (content: "Nouvelle page") ; 
+        return new Response("La formation : ".$_GET['Titre']);
     }
 }
