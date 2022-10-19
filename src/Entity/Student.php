@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StudentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Classroom;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
 class Student
@@ -18,6 +19,10 @@ class Student
 
     #[ORM\Column(nullable: true)]
     private ?float $moyenne = null;
+
+    #[ORM\ManyToOne(inversedBy: 'Student')]
+    #[ORM\JoinColumn(onDelete: "CASCADE")]
+    private ?Classroom $Classroom = null;
 
     public function getNce(): ?int
     {
@@ -54,4 +59,17 @@ class Student
 
         return $this;
     }
+
+    public function getClassroom(): ?Classroom
+    {
+        return $this->Classroom;
+    }
+
+    public function setClassroom(?Classroom $Classroom): self
+    {
+        $this->Classroom = $Classroom;
+
+        return $this;
+    }
+
 }

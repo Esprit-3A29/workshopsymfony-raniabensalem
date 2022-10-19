@@ -1,11 +1,11 @@
-<a href="#" > Ajouter </a> 
+<a href="{{ path('add') }}" > AjouterStudent </a> 
 <br>
 {% for i in tabstudent %}
  usename:{{i.username}}
  moyenne:{{i.moyenne}}
 
- <a href="#" > Supprimer </a> 
- <a href="#" > Modifier </a> 
+ <a href="{{ path('remove2',{'nce':i.nce}) }}" > Supprimer </a> 
+ <a href="{{ path('update2',{'nce':i.nce}) }}"> Modifier </a> 
  <br>
 
 {% endfor %}

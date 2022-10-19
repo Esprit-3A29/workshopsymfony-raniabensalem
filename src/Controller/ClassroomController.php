@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 
-
 class ClassroomController extends AbstractController
 {
     #[Route('/classroom', name: 'app_classroom')]
@@ -30,15 +29,14 @@ class ClassroomController extends AbstractController
         return $this->render('classroom/classroom.html.twig',array('tabclassroom'=>$classroom)) ; 
     }
    
-
-       
-        #[Route('/addForm', name: 'add2')]
+     #[Route('/addForm', name: 'add2')]
     public function addForm(ManagerRegistry $doctrine,Request $request)
     {
         $classroom= new Classroom;
         $form= $this->createForm(ClassroomType::class,$classroom);
         $form->handleRequest($request) ;
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted())
+        {
              $em= $doctrine->getManager();
              $em->persist($classroom);
              $em->flush();
@@ -68,7 +66,7 @@ class ClassroomController extends AbstractController
         $classroom= $repository->find($id);
         $em = $doctrine->getManager();
         $em->remove($classroom);
-        $em->flush();
+        $em->flush(); //mise a jour 
         return  $this->redirectToRoute("list_classroom");
     }
    

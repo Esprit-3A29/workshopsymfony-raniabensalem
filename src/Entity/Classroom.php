@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClassroomRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClassroomRepository::class)]
@@ -18,6 +20,14 @@ class Classroom
 
     #[ORM\Column(length: 88)]
     private ?string $description = null;
+
+    #[ORM\OneToMany(mappedBy: 'Classroom', targetEntity: Student::class)]
+    private Collection $Student;
+
+    public function __construct()
+    {
+        $this->Student = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -44,6 +54,39 @@ class Classroom
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+   /* public function __toString()
+    {
+        return $this->getName() ; 
+    }*/
+    /**
+     * @return Collection<int, Student>
+     */
+    public function getStudent(): Collection
+    {
+        return $this->Student;
+    }
+
+    public function addStudent(Student $student): self
+    {
+        if (!$this->Student->contains($student)) {
+            $this->Student->add($student);
+            $student->setClassroom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): self
+    {
+        if ($this->Student->removeElement($student)) {
+            // set the owning side to null (unless already changed)
+            if ($student->getClassroom() === $this) {
+                $student->setClassroom(null);
+            }
+        }
 
         return $this;
     }
