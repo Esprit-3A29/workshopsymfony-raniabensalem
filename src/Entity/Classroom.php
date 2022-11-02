@@ -21,8 +21,8 @@ class Classroom
     #[ORM\Column(length: 88)]
     private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'Classroom', targetEntity: Student::class)]
-    private Collection $Student;
+    #[ORM\OneToMany(mappedBy: 'Classroom', targetEntity: Student::class)] // 3 wahdhom
+    private Collection $Student; // 4  wahdhom
 
     public function __construct()
     {
@@ -57,10 +57,12 @@ class Classroom
 
         return $this;
     }
-   /* public function __toString()
+   /*public function __toString()
     {
-        return $this->getName() ; 
+        return $this->getName() ;      // ajout 1ere methode  //id par exemple 
     }*/
+    /*******************wahedhom */
+    
     /**
      * @return Collection<int, Student>
      */

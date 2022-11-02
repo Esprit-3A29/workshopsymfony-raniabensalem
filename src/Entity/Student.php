@@ -10,7 +10,7 @@ use App\Entity\Classroom;
 class Student
 {
     #[ORM\Id]
-  //  #[ORM\GeneratedValue]
+ //  #[ORM\GeneratedValue]    1  zidna
     #[ORM\Column]
     private ?int $nce = null;
 
@@ -21,7 +21,7 @@ class Student
     private ?float $moyenne = null;
 
     #[ORM\ManyToOne(inversedBy: 'Student')]
-    #[ORM\JoinColumn(onDelete: "CASCADE")]
+   // #[ORM\JoinColumn(onDelete: "CASCADE")] // pour quand on supprime classrom     2   zidna
     private ?Classroom $Classroom = null;
 
     public function getNce(): ?int

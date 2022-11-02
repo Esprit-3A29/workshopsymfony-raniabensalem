@@ -17,8 +17,9 @@ class StudentType extends AbstractType
             ->add('nce')
             ->add('username')
             ->add('moyenne')
+           // ->add('Classroom') // ajout 1ere methode
             ->add('Classroom',EntityType::class,array(
-                   'class'=>Classroom::class,'choice_label'=>'name' ))
+                   'class'=>Classroom::class,'choice_label'=>'name' )) // ajout 2emme methode
             ->add("submit",SubmitType::class)
         ;
     }

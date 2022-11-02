@@ -1,5 +1,7 @@
-<a href="{{ path('add') }}" > AjouterStudent </a> 
-<br>
+{{ form(searchForm) }}
+<a href="{{ path('add') }}" > <h4> AjouterStudent </h4> </a>   {# recherche  #}
+<br> 
+<h1> List Students</h1>
 {% for i in tabstudent %}
  usename:{{i.username}}
  moyenne:{{i.moyenne}}
@@ -8,4 +10,22 @@
  <a href="{{ path('update2',{'nce':i.nce}) }}"> Modifier </a> 
  <br>
 
+{% endfor %}
+
+<h1> List Students order by </h1>                              {# tri  #}
+<br> 
+{% for j in sortBymoyenne %}
+ usename:{{j.username}}
+ moyenne:{{j.moyenne}}
+ <a href="{{ path('remove2',{'nce':j.nce}) }}" > Supprimer </a> 
+ <a href="{{ path('update2',{'nce':j.nce}) }}"> Modifier </a> 
+ <br>
+ {% endfor %}
+
+ <h1 style="color: deeppink">Top Students</h1>                       {# les meilleurs eleves  #}
+<br> 
+{% for k in topStudents %}
+    username: {{ k.username }}
+    moyenne: {{ k.moyenne }}
+    <br>
 {% endfor %}

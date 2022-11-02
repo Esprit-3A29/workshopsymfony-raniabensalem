@@ -1,5 +1,5 @@
 <h1> la liste de formation de la classe {{classe}} dans la salle {{salle}} </h1> 
-<img src="{{ asset('img/rania2.png') }}" alt="student" >
+
 
 
 {% if tableDeFormation is empty  %}
@@ -17,7 +17,9 @@
 {% endif %}
 {% endfor %} 
 {% endif %}
+
 <h5> nbr de formation : {{tableDeFormation | length}} </h5>
+
 {% set x=0 %}
 {{x }}
 
@@ -29,3 +31,55 @@
 
 
 <h4> la formation qui a le plus grand nombre de participants :  {{ tableDeFormation |sort((a, b) => a.nb_participants < b.nb_participants)|column('Titre').0 }}  </h4>
+
+
+
+
+{#------------------------------------------------------------------------------------ #}
+{# abs->-5->5 #}
+
+{% set items = ['a', 'b', 'c', 'd'] %}
+{% set items = [{ 'fruit' : 'apple'}, {'fruit' : 'orange' }] %}
+{% set fruits = items|column('fruit') %}
+{# fruits now contains ['apple', 'orange'] #}
+
+
+{{ 'my first car'|capitalize }} {# capitalize -> premier letrre majuscule #}
+{% set items = [{ 'fruit' : 'apple'}, {'fruit' : 'orange' }] %}
+{{ "now"|date("m/d/Y") }}
+{{ '1234'|first }}
+{# outputs 1 #}
+
+{{ [1, 2, 3]|join }}
+{# returns 123 #}
+{{ [1, 2, 3]|join('|') }}
+{# outputs 1|2|3 #}
+{{ 'WELCOME'|lower }}
+
+{# outputs 'welcome' #}
+{{ '1234'|reverse }}
+
+{# outputs 4321 #}
+
+{{ 42.55|round }}
+{# outputs 43 #}
+
+{{ 42.55|round(1, 'floor') }}
+{# outputs 42.5 #}
+
+
+{#------------------------------------------------------------------------------------ #}
+{% for i in tableDeFormation %}
+<table>
+    <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+    </tr>
+    <tr>
+        <td>{{i.ref}}  </td>
+        <td> {{i.Titre | upper }} </td>
+        <td> {{i.Description}}</td>
+    </tr>
+</table>
+{%  endfor %}

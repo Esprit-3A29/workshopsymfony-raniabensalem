@@ -19,7 +19,7 @@ class ClubController extends AbstractController
     #[Route('/clublist', name: 'formation_club')]
     public function formations()
     { 
-        $var1="A29"; 
+        $var1="A29"; // declaration des variables puis on veut les afficher dans twig
         $var2="J23"; 
         $formations = array(
             array('ref' => 'form147', 'Titre' => 'Formation Symfony
@@ -33,13 +33,15 @@ class ClubController extends AbstractController
             'Description'=>'theorique','date_debut'=>'10/06/2020','date_fin'=>'14/06/2020',
             'nb_participants'=>12));
         return $this->render('club/list.html.twig',array('classe'=>$var1,'salle'=>$var2,'tableDeFormation'=>$formations)) ; 
+                 //pour afficher les variables dans twig on leurs donne des noms 
     }
     
     #[Route('reservation', name: 'app_reservation')]
     public function reservation(): Response
     {
-        return new Response("La formation : ".$_GET['Titre']);
+        return new Response("La formation");
     }
+    
 
     #[Route('/clubs', name: 'app_club')]
     public function listclub(ClubRepository $repository)
